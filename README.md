@@ -34,13 +34,3 @@ graph LR
     D -->|Retrieve Top-k Chunks| F[Context Window]
     F -->|Send to Cloud| G[Groq Cloud (Llama 3)]
     G -->|Response + Citations| H[User UI]
-
----
-
-##  How to use this?
-    1. fork the repo
-    2. run "pip install requirements.txt" on your terminal
-    3. run "streamlit run main.py" for running the app
-    4. on the sidebar insert your API key from groq(https://console.groq.com/home)
-    5. add in the pdf then let the model index it.
-    6. use the chat bar below to ask anything you want :D
