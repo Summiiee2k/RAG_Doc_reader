@@ -9,10 +9,11 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 st.set_page_config(page_title="DocuReader", layout="centered")
 st.title("Docu Reader")
 
-api_key = "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"
+
 #Sidebar 
 with st.sidebar:
     st.header("Settings") 
+    api_key = st.text_input("Enter your API Key", type="password") #I aint giving mine :D
     uploaded_file = st.file_uploader("Upload a PDF", type=["pdf"])
 
 #Setup Model
