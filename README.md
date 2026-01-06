@@ -27,10 +27,10 @@ The system follows a standard RAG workflow but optimized for speed:
 
 ```mermaid
 graph LR
-    A[User PDF] -->|Ingest| B(Streamlit UI)
-    B -->|Local Embedding| C[HuggingFace BGE-Small]
-    C -->|Vectorize| D[(Vector Store)]
+    A[User PDF] -->|Ingest| B("Streamlit UI")
+    B -->|Local Embedding| C["HuggingFace BGE-Small"]
+    C -->|Vectorize| D[("Vector Store")]
     E[User Query] -->|Search| D
-    D -->|Retrieve Top-k Chunks| F[Context Window]
-    F -->|Send to Cloud| G[Groq Cloud (Llama 3)]
-    G -->|Response + Citations| H[User UI]
+    D -->|Retrieve Top-k Chunks| F["Context Window"]
+    F -->|Send to Cloud| G["Groq Cloud (Llama 3)"]
+    G -->|Response + Citations| H["User UI"]
