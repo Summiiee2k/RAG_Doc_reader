@@ -1,5 +1,5 @@
 #  Basic RAG Document reader
- **Update:** 
+* **Update:** 
 **Added more features for more efficeint RAG**
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python)

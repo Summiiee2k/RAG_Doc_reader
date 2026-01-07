@@ -2,5 +2,10 @@ streamlit
 llama-index
 llama-index-llms-groq
 llama-index-embeddings-huggingface
-pypdf
-python-dotenv
+llama-parse
+llama-index-retrievers-bm25
+llama-index-postprocessor-colbert-rerank
+torch
+sentence-transformers
+ragas
+pandas
