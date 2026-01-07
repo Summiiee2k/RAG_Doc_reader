@@ -22,17 +22,40 @@ Just to learn how RAG works by making a RAG pipeline using Groq
 * **Simple yet efficient Steamlit UI:** Utilizing python streamlit's virsitility and efficiency to design & deploy fast 
 
 ---
+##  Why This Upgrade?
+
+Most basic RAG tutorials fail in the real world because they cannot read tables and miss exact keywords (like part numbers or dates). This project implements the **"Advanced RAG Stack"**, to fix that:
+
+* **Complex Document Parsing:** Replaced standard PDF readers with **LlamaParse**, a vision-based model that converts PDFs into clean Markdown, preserving tables and headers perfectly.
+* **Hybrid Search (The "Best of Both" Retrieval):** Combines **BM25 (Keyword Search)** with **Vector Search (Semantic Search)** using Reciprocal Rank Fusion. This ensures queries like *"Error code 404"* (Exact) and *"System failure"* (Semantic) both work.
+* **Cross-Encoder Re-Ranking:** Implemented a verification step where a high-accuracy model (`ms-marco-MiniLM`) re-reads the retrieved chunks and discards irrelevant ones before they reach the LLM.
+* **State Persistence:** Includes local storage for the Vector Index and Chat History, allowing users to restart the app without losing data or re-processing files.
+
+---
 
 ##  Architecture
 
 The system follows a standard RAG workflow but optimized for speed:
 
 ```mermaid
-graph LR
-    A[User PDF] -->|Ingest| B("Streamlit UI")
-    B -->|Local Embedding| C["HuggingFace BGE-Small"]
-    C -->|Vectorize| D[("Vector Store")]
-    E[User Query] -->|Search| D
-    D -->|Retrieve Top-k Chunks| F["Context Window"]
-    F -->|Send to Cloud| G["Groq Cloud (Llama 3)"]
-    G -->|Response + Citations| H["User UI"]
+graph TD
+    subgraph Ingestion
+    A[User PDF] -->|LlamaParse| B("Structured Markdown")
+    B -->|Embedding| C["Vector Store & Doc Store"]
+    end
+
+    subgraph Retrieval
+    Q[User Query] -->|Semantic Search| D["Vector Retriever"]
+    Q -->|Keyword Search| E["BM25 Retriever"]
+    D & E -->|Reciprocal Rank Fusion| F["Candidate Chunks"]
+    end
+
+    subgraph Refinement
+    F -->|Cross-Encoder Model| G{"Re-Ranker"}
+    G -->|Filter Top-5| H["High-Quality Context"]
+    end
+
+    subgraph Generation
+    H -->|Context + Query| I["Groq Cloud (Llama 3)"]
+    I -->|Answer + Citations| J["User UI"]
+    end
