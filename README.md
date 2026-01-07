@@ -1,4 +1,6 @@
 #  Basic RAG Document reader
+** **Update** 
+**Added more features for more efficeint RAG**
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit)
