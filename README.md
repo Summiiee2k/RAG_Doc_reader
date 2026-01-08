@@ -32,7 +32,13 @@ Most basic RAG tutorials fail in the real world because they cannot read tables 
 * **State Persistence:** Includes local storage for the Vector Index and Chat History, allowing users to restart the app without losing data or re-processing files.
 
 ---
-
+**HOW TO USE**
+    1. Fork the repo and navigate into the directory, open the main.py file.
+    2. Install all the requirements by "pip install -r requirements.txt"
+    3. open the app by typing "streamlit run main.py"
+    4. Once open, put in your API keys for Groq & Llama
+    5. Once loaded, a you will asked to upload the PDF 
+    6. upload the PDF, wait for it for read then ask away any question you want!
 ##  Architecture
 
 The system follows a standard RAG workflow but optimized for speed:
@@ -59,3 +65,5 @@ graph TD
     H -->|Context + Query| I["Groq Cloud (Llama 3)"]
     I -->|Answer + Citations| J["User UI"]
     end
+
+  
